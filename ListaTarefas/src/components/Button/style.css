@@ -1,0 +1,27 @@
+@import url('../../App.css');
+
+.custom-button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: var(--padding);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+}
+
+.custom-button:hover {
+  background-color: var(--secondary-color);
+}
+
+.custom-button.outlined {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.custom-button.outlined:hover {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}

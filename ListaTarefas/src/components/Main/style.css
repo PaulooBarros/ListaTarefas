@@ -1,0 +1,21 @@
+@import url('../../App.css');
+
+.main-component {
+  background-color: white;
+  padding: 30px;
+  margin: 50px auto;
+  max-width: 640px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.title{
+  color: var(--roxo);
+}
