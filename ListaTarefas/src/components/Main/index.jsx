@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import CustomButton from "../Button";
 import CustomInput from "../Input";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Main() {
   const [novaTarefa, setNovaTarefa] = useState("");
@@ -10,20 +11,16 @@ export default function Main() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
     if (!novaTarefa.trim()) {
-      alert("Digite uma tarefa válida!");
+      toast.error('A tarefa não pode estar vazia!');
       return;
     }
-  
     const tarefasExistentes = JSON.parse(localStorage.getItem('tarefas')) || [];
     const novaLista = [...tarefasExistentes, novaTarefa];
-  
     localStorage.setItem('tarefas', JSON.stringify(novaLista));
+    toast.success('Tarefa cadastrada com sucesso!');
     setNovaTarefa("");
   };
-  ;
-
 
   const handleCancel = () => setNovaTarefa("");
 
