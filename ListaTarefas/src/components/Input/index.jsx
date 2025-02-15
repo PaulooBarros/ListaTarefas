@@ -6,6 +6,8 @@ const CustomInput = ({
   variant = "outlined",
   multiline = false,
   rows,
+  value,
+  onChange
 }) => {
   return (
     <TextField
@@ -14,6 +16,8 @@ const CustomInput = ({
       variant={variant}
       multiline={multiline}
       rows={rows}
+      value={value} 
+      onChange={onChange}
     />
   );
 };

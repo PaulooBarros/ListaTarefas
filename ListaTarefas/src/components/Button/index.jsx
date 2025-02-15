@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 
-const CustomButton = ({ text, variant = "contained", color = "primary", customColor, onClick }) => {
-  const sx =  {borderRadius: "8px"};
+const CustomButton = ({ text, variant = "contained", color = "primary", customColor, onClick, type = "button" }) => {
+  const sx =  { borderRadius: "8px" };
 
   return (
-    <Button variant={variant} color={color} onClick={onClick} sx={sx}>
+    <Button type={type} variant={variant} color={color} onClick={onClick} sx={sx}>
       {text}
     </Button>
   );

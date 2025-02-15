@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import { purple } from "@mui/material/colors";
 
 export const theme = createTheme({
   palette: {
@@ -13,12 +12,6 @@ export const theme = createTheme({
     },
     rosa: {
       main: "#7B2CBF",
-      contrastText: "#ffffff",
-    },
-  },
-  typography: {
-    roxo: {
-      main: "#FFF",
       contrastText: "#ffffff",
     },
   },

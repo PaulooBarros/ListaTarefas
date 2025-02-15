@@ -1,44 +1,51 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import CustomButton from "../Button";
 import CustomInput from "../Input";
 
-export default class Main extends Component {
-  state = {
-    novaTarefa: "",
+export default function Main() {
+  const [novaTarefa, setNovaTarefa] = useState("");
+
+  const handleChange = (e) => setNovaTarefa(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const tarefasExistentes = JSON.parse(localStorage.getItem('tarefas')) || [];
+
+    const novaLista = [...tarefasExistentes, novaTarefa];
+    
+    localStorage.setItem('tarefas', JSON.stringify(novaLista));
   };
 
-  handleChange = (e) => {
-    this.setState({
-      novaTarefa: e.target.value,
-    });
-  };
 
-  handleClick = () => {
-    alert("Tarefa Cadastrada!");
-  };
+  const handleCancel = () => setNovaTarefa("");
 
-  render() {
-    return (
-      <div className="main-component">
-        <div className="title">
-          <h1>Lista de Tarefas</h1>
-        </div>
-        <form className="form" action="#">
-          <CustomInput
-            label="Cadastre sua Tarefa"
-            placeholder="Bater o ponto"
-            color="primary"
-          />
-          <CustomButton text="Cancelar" variant="outlined" color="michas" />
-          <CustomButton
-            variant="outlined"
-            text="Enviar"
-            onClick={this.handleClick}
-            color="roxo"
-          />
-        </form>
+  return (
+    <div className="main-component">
+      <div className="title">
+        <h1>Lista de Tarefas</h1>
       </div>
-    );
-  }
+      <form className="form" onSubmit={handleSubmit}>
+        <CustomInput
+          label="Cadastre sua Tarefa"
+          placeholder="Bater o ponto"
+          color="primary"
+          value={novaTarefa}
+          onChange={handleChange}
+        />
+        <CustomButton
+          text="Cancelar"
+          variant="outlined"
+          color="michas"
+          onClick={handleCancel}
+        />
+        <CustomButton
+          variant="outlined"
+          text="Enviar"
+          color="roxo"
+          type="submit"
+        />
+      </form>
+    </div>
+  );
 }
