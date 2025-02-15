@@ -10,12 +10,19 @@ export default function Main() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+    if (!novaTarefa.trim()) {
+      alert("Digite uma tarefa válida!");
+      return;
+    }
+  
     const tarefasExistentes = JSON.parse(localStorage.getItem('tarefas')) || [];
-
     const novaLista = [...tarefasExistentes, novaTarefa];
-    
+  
     localStorage.setItem('tarefas', JSON.stringify(novaLista));
+    setNovaTarefa("");
   };
+  ;
 
 
   const handleCancel = () => setNovaTarefa("");

@@ -16,7 +16,7 @@ const CustomInput = ({
       variant={variant}
       multiline={multiline}
       rows={rows}
-      value={value} 
+      value={value}
       onChange={onChange}
     />
   );
