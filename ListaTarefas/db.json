@@ -2,6 +2,12 @@
     "areaGastos": [
       { "id": 1, "title": "Lazer" },
       { "id": 2, "title": "Saúde" },
-      { "id": 3, "title": "Alimentação" }
+      { "id": 3, "title": "Alimentação" },
+      { "id": 4, "title": "Transporte" },
+      { "id": 5, "title": "Educação" }
+    ],
+
+    "gastosCadastrados": [
+        {"id": 1, "title": "", "descricao": "almoço no parque"}
     ]
   }

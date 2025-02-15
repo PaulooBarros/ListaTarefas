@@ -8,14 +8,14 @@ const CustomInput = ({
   rows,
   value,
   onChange,
-  onlyNumbers = false // Novo parâmetro para permitir apenas números
+  onlyNumbers = false 
 }) => {
   const handleChange = (e) => {
-    // Verifica se o campo aceita apenas números
+    
     if (onlyNumbers && !/^\d*$/.test(e.target.value)) {
-      return; // Se o valor não for número, não faz nada
+      return; 
     }
-    onChange(e); // Chama a função onChange original
+    onChange(e);
   };
 
   return (
