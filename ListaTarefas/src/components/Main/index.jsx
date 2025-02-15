@@ -1,47 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import CustomButton from "../Button";
 import CustomInput from "../Input";
 import { toast } from "react-toastify";
 import SelectAutoWidth from "../Select";
+import { postGasto, fetchAreaGastos } from "../../repositories";
 
 export default function Main() {
-  const [novaTarefa, setNovaTarefa] = useState("Gasto1");
-  const [valorCadastro, setValorCadastro] = useState(""); 
+  const [novaTarefa, setNovaTarefa] = useState("");
+  const [valorCadastro, setValorCadastro] = useState("");
+  const [areaSelecionada, setAreaSelecionada] = useState("");
+  const [options, setOptions] = useState([]);
+
+  // Busca as áreas de gastos usando axios (cliente padrão)
+  useEffect(() => {
+    fetchAreaGastos()
+      .then((data) => setOptions(data))
+      .catch((error) => console.error("Erro ao buscar dados:", error));
+  }, []);
 
   const handleTarefaChange = (e) => setNovaTarefa(e.target.value);
   const handleValorChange = (e) => setValorCadastro(e.target.value);
+  const handleAreaChange = (e) => setAreaSelecionada(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!novaTarefa.trim() || !valorCadastro.trim() || isNaN(valorCadastro)) {
-      toast.error(
-        !novaTarefa.trim()
-          ? 'A descrição do gasto não pode estar vazia!'
-          : 'O valor precisa ser um número válido!'
+  
+    console.log("Descrição:", novaTarefa);
+    console.log("Valor:", valorCadastro);
+    console.log("Área Selecionada:", areaSelecionada);
+  
+    try {
+      await postGasto(
+        novaTarefa,
+        parseFloat(valorCadastro),
+        areaSelecionada
       );
-      return;
+      toast.success("Gasto cadastrado com sucesso!");
+      setNovaTarefa("");
+      setValorCadastro("");
+      setAreaSelecionada("");
+    } catch (error) {
+      toast.error("Erro ao cadastrar gasto");
     }
-
-    const tarefasExistentes = JSON.parse(localStorage.getItem('tarefas')) || [];
-    const novaLista = [
-      ...tarefasExistentes,
-      { descricao: novaTarefa, valor: parseFloat(valorCadastro) }, 
-    ];
-
-    localStorage.setItem('tarefas', JSON.stringify(novaLista));
-
-    toast.success('Gasto cadastrado com sucesso!');
-
-    
-    setNovaTarefa("");
-    setValorCadastro(""); 
   };
+  
 
   const handleCancel = () => {
-    setNovaTarefa(""); 
-    setValorCadastro(""); 
+    setNovaTarefa("");
+    setValorCadastro("");
+    setAreaSelecionada("");
   };
 
   return (
@@ -69,7 +77,12 @@ export default function Main() {
             onChange={handleValorChange}
             onlyNumbers={true}
           />
-          <SelectAutoWidth />
+
+          <SelectAutoWidth
+            value={areaSelecionada}
+            onChange={handleAreaChange}
+            options={options}
+          />
         </div>
 
         <div className="button-container">

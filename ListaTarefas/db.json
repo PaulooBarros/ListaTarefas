@@ -1,13 +1,49 @@
 {
-    "areaGastos": [
-      { "id": 1, "title": "Lazer" },
-      { "id": 2, "title": "Saúde" },
-      { "id": 3, "title": "Alimentação" },
-      { "id": 4, "title": "Transporte" },
-      { "id": 5, "title": "Educação" }
-    ],
-
-    "gastosCadastrados": [
-        {"id": 1, "title": "", "descricao": "almoço no parque"}
-    ]
-  }
+  "areaGastos": [
+    {
+      "id": 1,
+      "title": "Lazer"
+    },
+    {
+      "id": 2,
+      "title": "Saúde"
+    },
+    {
+      "id": 3,
+      "title": "Alimentação"
+    },
+    {
+      "id": 4,
+      "title": "Transporte"
+    },
+    {
+      "id": 5,
+      "title": "Educação"
+    }
+  ],
+  "gastosCadastrados": [
+    {
+      "descricao": "almoço no parque",
+      "valor": 0,
+      "area": "Lazer"
+    },
+    {
+      "id": "cd84",
+      "descricao": "dasdasdasdasdasdasda",
+      "valor": 212123,
+      "area": ""
+    },
+    {
+      "id": "6020",
+      "descricao": "gastu",
+      "valor": 1231,
+      "area": ""
+    },
+    {
+      "id": "3833",
+      "descricao": "asdasda",
+      "valor": 1431231,
+      "area": ""
+    }
+  ]
+}

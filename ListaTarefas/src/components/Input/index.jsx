@@ -11,8 +11,7 @@ const CustomInput = ({
   onlyNumbers = false 
 }) => {
   const handleChange = (e) => {
-    
-    if (onlyNumbers && !/^\d*$/.test(e.target.value)) {
+    if (onlyNumbers && !/^\d*\.?\d*$/.test(e.target.value)) {
       return; 
     }
     onChange(e);
@@ -27,7 +26,6 @@ const CustomInput = ({
       rows={rows}
       value={value}
       onChange={handleChange}
-      // Usando "text" porque estamos controlando a entrada com regex
       type="text"
     />
   );
