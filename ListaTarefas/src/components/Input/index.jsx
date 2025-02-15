@@ -7,8 +7,17 @@ const CustomInput = ({
   multiline = false,
   rows,
   value,
-  onChange
+  onChange,
+  onlyNumbers = false // Novo parâmetro para permitir apenas números
 }) => {
+  const handleChange = (e) => {
+    // Verifica se o campo aceita apenas números
+    if (onlyNumbers && !/^\d*$/.test(e.target.value)) {
+      return; // Se o valor não for número, não faz nada
+    }
+    onChange(e); // Chama a função onChange original
+  };
+
   return (
     <TextField
       label={label}
@@ -17,7 +26,9 @@ const CustomInput = ({
       multiline={multiline}
       rows={rows}
       value={value}
-      onChange={onChange}
+      onChange={handleChange}
+      // Usando "text" porque estamos controlando a entrada com regex
+      type="text"
     />
   );
 };

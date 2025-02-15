@@ -7,15 +7,23 @@
   max-width: 640px;
   height: auto;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.form {
+.button-container {
   display: flex;
   gap: 8px;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-.title{
+.title {
   color: var(--roxo);
+}
+
+.inputs-container {
+  gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }
