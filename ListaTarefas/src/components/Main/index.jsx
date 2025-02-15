@@ -80,7 +80,7 @@ export default function Main() {
 
           <SelectAutoWidth
             value={areaSelecionada}
-            onChange={handleAreaChange}
+            onChange={handleAreaChange} // TO DO, AREA CADASTRADA ESTÁ INDO VAZIA
             options={options}
           />
         </div>
