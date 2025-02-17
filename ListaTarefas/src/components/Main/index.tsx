@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import "./style.css";
-import CustomButton from "../Button";
-import CustomInput from "../Input";
+import CustomButton from "../Button/index.jsx";
+import CustomInput from "../Input/index.jsx";
 import { toast } from "react-toastify";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,18 +13,18 @@ import Paper from "@mui/material/Paper";
 import { Trash2 } from "lucide-react";
 import { theme } from "../../Config/theme.js";
 
-export default function Main() {
-  const [novaTarefa, setNovaTarefa] = useState("");
-  const [tarefas, setTarefas] = useState([]);
+const Main: React.FC = () => {
+  const [novaTarefa, setNovaTarefa] = useState<string>("");
+  const [tarefas, setTarefas] = useState<string[]>([]);
 
   useEffect(() => {
-    const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas")) || [];
+    const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas") || "[]") as string[];
     setTarefas(tarefasSalvas);
   }, []);
 
-  const handleChange = (e) => setNovaTarefa(e.target.value);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setNovaTarefa(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!novaTarefa.trim()) {
       toast.error("A tarefa não pode estar vazia!");
@@ -39,12 +39,13 @@ export default function Main() {
 
   const handleCancel = () => setNovaTarefa("");
 
-  const handleDelete = (index) => {
+  const handleDelete = (index: number) => {
     const novaLista = tarefas.filter((_, i) => i !== index);
     setTarefas(novaLista);
     localStorage.setItem("tarefas", JSON.stringify(novaLista));
     toast.info("Tarefa excluída.");
   };
+
   return (
     <div className="main-component">
       <div className="title">
@@ -102,13 +103,12 @@ export default function Main() {
                 key={index}
                 sx={{
                   "&:nth-of-type(odd)": { backgroundColor: "#f5f5f5" },
-                  "&:nth-of-type(even)": { backgroundColor: "#f0f0f0" }, // Branco gelo para linhas pares
+                  "&:nth-of-type(even)": { backgroundColor: "#f0f0f0" },
                 }}
               >
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{tarefa}</TableCell>
                 <TableCell sx={{ cursor: "pointer" }}>
-                  {" "}
                   <Trash2 onClick={() => handleDelete(index)} />
                 </TableCell>
               </TableRow>
@@ -118,4 +118,6 @@ export default function Main() {
       </TableContainer>
     </div>
   );
-}
+};
+
+export default Main;

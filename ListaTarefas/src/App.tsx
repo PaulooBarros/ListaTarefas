@@ -1,12 +1,12 @@
 import React from "react";
 import Main from "./components/Main";
 import "../src/app.css";
-import { theme } from "./Config/theme.js"
-import { ThemeProvider } from '@mui/material/styles';
-import 'react-toastify/dist/ReactToastify.css';
+import { theme } from "./Config/theme";
+import { ThemeProvider } from "@mui/material/styles";
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, Bounce } from "react-toastify";
 
-function App() {
+const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <ToastContainer
@@ -27,6 +27,6 @@ function App() {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
